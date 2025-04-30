@@ -1,4 +1,4 @@
-importScripts('./uv/uv.sw.js');
+importScripts('https://raw.githubusercontent.com/goaded/Utopia/main/uv/uv.sw.js');
 
 const sw = new UVServiceWorker();
 
