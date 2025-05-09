@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+  <button onclick="downloads()">download</button>
+  
+  <script>
+    // Function to extract userId from the URL and store it in localStorage
+    function extractUserId() {
+      const list = window.location.href.split("/");
+      let userID = null;
+
+      // Find the userId in the URL
+      for (let i = 0; i < list.length; i++) {
+        if (list[i].includes("u-")) {
+          userID = list[i];
+          break; // Stop searching once we find the userId
+        }
+      }
+
+      if (userID) {
+        localStorage.setItem("userId", userID);
+        console.log(`User ID (${userID}) saved to localStorage.`);
+      } else {
+        console.error("No userId found in the URL.");
+      }
+    }
+
+    // Function to download the ZIP file
+    function downloadZip() {
+      const zipUrl = "https://github.com/goaded/Utopia/archive/refs/heads/main.zip";
+
+      // Create an anchor element to trigger the download
+      const anchor = document.createElement("a");
+      anchor.href = zipUrl;
+      anchor.download = "Utopia-main.zip"; // Suggested filename for the downloaded file
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
+
+      console.log('Download started for Utopia-main.zip');
+    }
+
+    // Function to check and trigger the download if not already done
+
+    // Function to allow redownloading the ZIP file
+    function downloads() {
+      downloadZip();
+    }
+
+    // Call the functions on page loa
+    extractUserId();
+  </script>
+</body>
+</html>
